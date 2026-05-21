@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday ❤️</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      overflow:hidden;
+      background:linear-gradient(135deg,#ff4d6d,#ff758f,#ff8fa3);
+      height:100vh;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+    }
+
+    /* Floating Hearts */
+
+    .heart{
+      position:absolute;
+      color:white;
+      font-size:20px;
+      animation: float 8s linear infinite;
+      opacity:0.6;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(100vh) scale(0);
+      }
+      100%{
+        transform:translateY(-10vh) scale(1.5);
+      }
+    }
+
+    /* Start Screen */
+
+    #start-screen{
+      z-index:5;
+    }
+
+    #start-btn{
+      margin-top:20px;
+      padding:15px 35px;
+      border:none;
+      border-radius:50px;
+      background:white;
+      color:#ff4d6d;
+      font-size:20px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    #start-btn:hover{
+      transform:scale(1.1);
+    }
+
+    /* Countdown */
+
+    #countdown{
+      position:absolute;
+      font-size:160px;
+      font-weight:700;
+      display:none;
+      animation:pulse 1s infinite;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.2);}
+      100%{transform:scale(1);}
+    }
+
+    /* Main Surprise */
+
+    #main{
+      display:none;
+      width:100%;
+      height:100vh;
+      overflow-y:auto;
+      padding:40px 20px;
+      animation:fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+      }
+      to{
+        opacity:1;
+      }
+    }
+
+    .title{
+      font-family:'Great Vibes', cursive;
+      font-size:70px;
+      margin-bottom:10px;
+      text-shadow:0 0 20px rgba(255,255,255,0.8);
+    }
+
+    .subtitle{
+      font-size:20px;
+      margin-bottom:30px;
+    }
+
+    /* Gallery */
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .gallery img{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+      border-radius:25px;
+      border:4px solid rgba(255,255,255,0.5);
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      transition:0.5s;
+      opacity:0;
+      transform:translateY(40px);
+      animation:showImage 1s forwards;
+    }
+
+    .gallery img:hover{
+      transform:scale(1.05);
+    }
+
+    @keyframes showImage{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* Love Message */
+
+    .message{
+      margin-top:40px;
+      font-size:22px;
+      max-width:800px;
+      margin-inline:auto;
+      line-height:1.8;
+      background:rgba(255,255,255,0.15);
+      padding:30px;
+      border-radius:25px;
+      backdrop-filter:blur(10px);
+    }
+
+    /* Balloons */
+
+    .balloon{
+      position:absolute;
+      font-size:40px;
+      animation:fly 8s linear forwards;
+    }
+
+    @keyframes fly{
+      from{
+        transform:translateY(100vh);
+      }
+      to{
+        transform:translateY(-120vh);
+      }
+    }
+
+    /* Mobile */
+
+    @media(max-width:768px){
+
+      .title{
+        font-size:50px;
+      }
+
+      #countdown{
+        font-size:100px;
+      }
+
+      .gallery img{
+        height:240px;
+      }
+
+      .message{
+        font-size:18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating Hearts -->
+  <script>
+    for(let i=0;i<30;i++){
+      let heart=document.createElement("div");
+      heart.className="heart";
+      heart.innerHTML="❤";
+      heart.style.left=Math.random()*100+"vw";
+      heart.style.animationDuration=(Math.random()*5+5)+"s";
+      heart.style.fontSize=(Math.random()*25+15)+"px";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- Start Screen -->
+  <div id="start-screen">
+    <h1 style="font-size:60px;">🎁</h1>
+    <h2>A Special Surprise Awaits...</h2>
+    <button id="start-btn">Open Surprise ❤️</button>
+  </div>
+
+  <!-- Countdown -->
+  <div id="countdown">5</div>
+
+  <!-- Main Content -->
+  <div id="main">
+
+    <h1 class="title">Happy Birthday ❤️</h1>
+
+    <p class="subtitle">
+      To the most beautiful girl in the world ✨
+    </p>
+
+    <!-- Gallery -->
+    <div class="gallery">
+
+      <!-- Replace with her images -->
+
+      <img src="images/pic1.jpg" style="animation-delay:0.2s;">
+      <img src="images/pic2.jpg" style="animation-delay:0.4s;">
+      <img src="images/pic3.jpg" style="animation-delay:0.6s;">
+      <img src="images/pic4.jpg" style="animation-delay:0.8s;">
+      <img src="images/pic5.jpg" style="animation-delay:1s;">
+      <img src="images/pic6.jpg" style="animation-delay:1.2s;">
+      <img src="images/pic7.jpg" style="animation-delay:1.4s;">
+      <img src="images/pic8.jpg" style="animation-delay:1.6s;">
+      <img src="images/pic9.jpg" style="animation-delay:1.8s;">
+      <img src="images/pic10.jpg" style="animation-delay:2s;">
+
+    </div>
+
+    <!-- Message -->
+    <div class="message">
+      Happy Birthday to the most amazing person ever ❤️<br><br>
+
+      Thank you for bringing happiness, love, laughter,
+      and beauty into my life. Every moment with you
+      feels magical and I honestly can’t imagine life
+      without you.<br><br>
+
+      I hope today makes you smile as much as you
+      make me smile every single day ✨<br><br>
+
+      I love you forever ❤️
+    </div>
+
+  </div>
+
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+
+    const startBtn = document.getElementById("start-btn");
+    const countdown = document.getElementById("countdown");
+    const startScreen = document.getElementById("start-screen");
+    const main = document.getElementById("main");
+    const music = document.getElementById("music");
+
+    startBtn.addEventListener("click", ()=>{
+
+      startScreen.style.display="none";
+      countdown.style.display="block";
+
+      let count = 5;
+
+      countdown.innerHTML=count;
+
+      const timer = setInterval(()=>{
+
+        count--;
+
+        countdown.innerHTML=count;
+
+        if(count <= 0){
+
+          clearInterval(timer);
+
+          countdown.style.display="none";
+          main.style.display="block";
+
+          music.play();
+
+          launchConfetti();
+          createBalloons();
+
+        }
+
+      },1000);
+
+    });
+
+    /* Confetti */
+
+    function launchConfetti(){
+
+      confetti({
+        particleCount:250,
+        spread:180,
+        origin:{y:0.6}
+      });
+
+    }
+
+    /* Balloons */
+
+    function createBalloons(){
+
+      for(let i=0;i<40;i++){
+
+        let balloon=document.createElement("div");
+
+        balloon.className="balloon";
+
+        balloon.innerHTML=["🎈","🎉","❤️","✨"][Math.floor(Math.random()*4)];
+
+        balloon.style.left=Math.random()*100+"vw";
+
+        balloon.style.animationDuration=
+        (Math.random()*5+5)+"s";
+
+        balloon.style.fontSize=
+        (Math.random()*30+30)+"px";
+
+        document.body.appendChild(balloon);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
